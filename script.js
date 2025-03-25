@@ -1,3 +1,7 @@
+startCalculator();
+
+
+
 function add(num1, num2){
     return num1 + num2;
 }
@@ -26,3 +30,13 @@ function operation(operator, num1, num2){
             return divide(num1,num2);
     }
 }
+
+function startCalculator(){
+    const buttons = document.querySelector("#keyboard");
+    for (let i=0; i<=9;i++){
+        let btn = document.createElement("button");
+        btn.textContent = i;
+        buttons.appendChild(btn);
+    }
+}
+
