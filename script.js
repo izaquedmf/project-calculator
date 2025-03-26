@@ -1,3 +1,5 @@
+
+
 startCalculator();
 
 
@@ -31,9 +33,10 @@ function operation(operator, num1, num2){
     }
 }
 
-
+//build the calculator adding buttons and setting classes
+//make a estruct "keyboard = numbers + operators"
 function startCalculator(){
-    const buttons = document.querySelector("#keyboard");
+    const keyboard = document.querySelector("#keyboard");
     const numbers = document.createElement("div");
     numbers.id = "numbers";
 
@@ -59,7 +62,7 @@ function startCalculator(){
         }     
     }
 
-    buttons.appendChild(numbers);
+    keyboard.appendChild(numbers);
 
     //create div operatores
     const op = ["/", "*", "-", "+","="];
@@ -74,8 +77,53 @@ function startCalculator(){
 
     })
 
-    buttons.appendChild(operators);
+    keyboard.appendChild(operators);
 
+    //adding eventLister to all buttons created
+    const buttons = keyboard.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener('click', buttonPressed)
+    } );
+
+}
+
+function buttonPressed(event){
+    const btn = event.target;
+    const digit = Number(btn.textContent);
+
+    if(!isNaN(digit)){
+        addNumberDisplay(digit);
+    }
+
+    if(btn.textContent ==="AC"){
+        buttonClear();
+    }
+
+}
+
+//get the number in the display, add the digit in the sequence and put back on the display
+function addNumberDisplay(num){
+    const display = document.querySelector("#display");
+    let numDisplay = display.textContent;
+
+    if (numDisplay === "0") {
+        numDisplay = String(num);
+    } else {
+        numDisplay += String(num);
+    }
+
+    display.textContent = numDisplay; 
+
+}
+
+function buttonClear(){
+    resetDisplay();
+
+}
+
+function resetDisplay(){
+    display = document.querySelector("#display")
+    display.textContent = "0";
 
 }
 
