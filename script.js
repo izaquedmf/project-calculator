@@ -53,7 +53,8 @@ function startCalculator(){
     for (let i=0; i<=9;i++){
         if(i===0){
             let btn = document.createElement("button");
-            btn.textContent = 'AC';                               
+            btn.textContent = 'AC'; 
+            btn.id ="clear";                              
             numbers.appendChild(btn);
 
             btn = document.createElement("button");
